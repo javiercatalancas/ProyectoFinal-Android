@@ -11,9 +11,15 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="101dp"
-            android:background="@drawable/toolbarbackground"
+            android:layout_height="79dp"
+            android:background="@drawable/wallbackground"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>
