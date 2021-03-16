@@ -1,7 +1,9 @@
 package com.ejercicio.proyectofinal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -17,25 +19,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.prefs.Preferences;
+
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputEditText sendmail;
+
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        sendmail = findViewById(R.id.emailkk);
+
         TextInputEditText usuario = findViewById(R.id.textuser);
         TextInputEditText contra = findViewById(R.id.textpass);
         TextView restoremail = findViewById(R.id.restore);
         Button login = findViewById(R.id.login);
         TextView borrar = findViewById(R.id.delete);
+        Button call = findViewById(R.id.callbutton);
 
-
+        // PREFERENCIAS ALMACENAR USUARIO
+        SharedPreferences preferences = getSharedPreferences("myprefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String usuariorecordar = preferences.getString("usuario", "");
+        usuario.setText(usuariorecordar);
+        // BOTÓN LOGIN
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 String username = usuario.getText().toString();
                 String userpass = contra.getText().toString();
@@ -50,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if ((username.contentEquals("invitado") && userpass.contentEquals("estech1234"))||(username.contentEquals("alumno") && userpass.contentEquals("alumno1234")||(username.contentEquals("profesor") && userpass.contentEquals("profesor1234"))))
                 {
+                    editor.putString("usuario", username );
+                    editor.apply();
                     dialogNormal();
                    // Toast.makeText(LoginActivity.this, "credenciales correctas", Toast.LENGTH_SHORT).show();
                 } else Toast.makeText(LoginActivity.this, "username incorrecto", Toast.LENGTH_SHORT).show();
@@ -57,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // RESTAURAR CONTRASEÑA
         restoremail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // ELIMINAR CREDENCIALES
         borrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +88,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // BOTÓN LLAMAR
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:953696969"));
+                startActivity(intent);
+
+            }
+        });
     }
+
 
     // SALIR DE LA APP CON DIALOG
     @Override
@@ -116,7 +142,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+
                 // AQUÍ HACEMOS UN INTENT PARA PASAR A LA SIGUIENTE ACTIVIDAD
+
               //  finish();
             }
         });
@@ -137,13 +168,13 @@ public class LoginActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View v = getLayoutInflater().inflate(R.layout.custom_dialog, null);
-
+        TextInputEditText sendmail = v.findViewById(R.id.emailkk);
         builder.setView(v);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+/*
                 String restoremail = sendmail.getText().toString();
                 if (restoremail.isEmpty()) {
                     sendmail.setError("Introduce un email");
@@ -151,6 +182,8 @@ public class LoginActivity extends AppCompatActivity {
                     sendmail.setError("Introduce un email correcto");
                 } else dialog.dismiss();
                 Toast.makeText(LoginActivity.this, "Mensaje enviado con éxito", Toast.LENGTH_SHORT).show();
+                */
+
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -160,22 +193,24 @@ public class LoginActivity extends AppCompatActivity {
 
         final AlertDialog dialog = builder.create();
         dialog.show();
-/*
+
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView sendmail = findViewById(R.id.sendemail);
-                String mail = sendmail.getText().toString();
+
+                String mail = sendmail.getText().toString().trim();
 
                 if(mail.isEmpty()){
                     sendmail.setError("Introduce un email");
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                     sendmail.setError("Introduce un email correcto");
-                } else dialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Mensaje enviado con éxito", Toast.LENGTH_SHORT).show();
+                } else dialog.dismiss(); Toast.makeText(LoginActivity.this, "Mensaje enviado con éxito", Toast.LENGTH_SHORT).show();
 
             }
         });
-        */
 
-    }}
+
+    }
+
+
+}
