@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+// import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -37,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         Button login = findViewById(R.id.login);
         TextView borrar = findViewById(R.id.delete);
         Button call = findViewById(R.id.callbutton);
+
+        // TOOLBAR (recordar importar androidx.appcompat.widget.Toolbar)
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         // PREFERENCIAS ALMACENAR USUARIO
         SharedPreferences preferences = getSharedPreferences("myprefs", MODE_PRIVATE);

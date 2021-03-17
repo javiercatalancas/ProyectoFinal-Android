@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">ProyectoFinal</string>
     <string name="title_home">Home</string>
-    <string name="title_main">Main</string>
+    <string name="title_blog">Blog</string>
+    <string name="title_gallery">Gallery</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_exit">Exit</string>
 
 </resources>

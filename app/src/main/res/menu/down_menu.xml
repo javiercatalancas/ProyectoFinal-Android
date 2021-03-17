@@ -6,12 +6,16 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/title_home" />
     <item
-        android:id="@+id/nav_main"
+        android:id="@+id/nav_blog"
         android:icon="@drawable/ic_baseline_dashboard_24"
-        android:title="@string/title_main" />
+        android:title="@string/title_blog" />
     <item
-        android:id="@+id/nav_notif"
-        android:icon="@drawable/ic_baseline_notifications_24"
+        android:id="@+id/nav_gallery"
+        android:icon="@drawable/ic_baseline_image_24"
+        android:title="@string/title_gallery" />
+    <item
+        android:id="@+id/nav_contact"
+        android:icon="@drawable/ic_baseline_contacts_24"
         android:title="@string/title_notifications" />
 
 </menu>
