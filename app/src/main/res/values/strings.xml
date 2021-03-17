@@ -5,5 +5,12 @@
     <string name="title_gallery">Gallery</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_exit">Exit</string>
+    
+    
+    <string name="titulo">Título</string>
+    <string name="fecha">Fecha</string>
+    <string name="text1">Texto1</string>
+    <string name="text2">Texto2</string>
+    <string name="text3">Texto3</string>
 
 </resources>
