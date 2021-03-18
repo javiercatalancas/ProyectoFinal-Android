@@ -56,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/amaranth_bold"
                 android:text="TextView"
+                android:textAlignment="center"
                 android:textSize="18sp" />
 
             <ImageView
@@ -69,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/amaranth_bold"
+                android:gravity="center_horizontal"
                 android:text="TextView"
                 android:textSize="18sp" />
 
