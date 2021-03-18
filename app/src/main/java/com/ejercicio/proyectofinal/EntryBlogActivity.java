@@ -33,9 +33,7 @@ public class EntryBlogActivity extends AppCompatActivity {
         int url = getResources().getIdentifier(entrada.getImagenprinc(), "drawable", getPackageName());
         imghead.setImageResource(url);
         int url2 = getResources().getIdentifier(entrada.getImg1(), "drawable", getPackageName());
-
         img2.setImageResource(url2);
-
 
 
 

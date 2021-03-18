@@ -13,4 +13,10 @@
     <string name="text2">Texto2</string>
     <string name="text3">Texto3</string>
 
+    <string name="textdireccion">C/ Joaquín Ruano Nº 29, 23700 Linares (Jaén)</string>
+    <string name="mail1">info@bestguitarlessons.es</string>
+    <string name="mail2">contacto@bestguitarlessons.es</string>
+    <string name="telefono_fijo">Teléfono 953 602560</string>
+    <string name="telefono_what">Whatsapp 697246008</string>
+
 </resources>
