@@ -127,4 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // ON CREATE OPTIONS MENU para el icono de salir (apuntes actionbar)
+
 }

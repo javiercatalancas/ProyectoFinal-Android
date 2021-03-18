@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
                     dialogNormal();
                    // Toast.makeText(LoginActivity.this, "credenciales correctas", Toast.LENGTH_SHORT).show();
-                } else Toast.makeText(LoginActivity.this, "username incorrecto", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(LoginActivity.this, "nombre de usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
 
             }
         });

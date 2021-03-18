@@ -2,6 +2,7 @@ package com.ejercicio.proyectofinal.usingclasses;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ejercicio.proyectofinal.EntryBlogActivity;
+import com.ejercicio.proyectofinal.MainActivity;
 import com.ejercicio.proyectofinal.R;
 import com.ejercicio.proyectofinal.fragments.BlogFragment;
 import com.ejercicio.proyectofinal.fragments.EntryBlogFragment;
@@ -26,11 +29,12 @@ public class EntradaAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private final ArrayList<Entrada> datos;
     private final Context context;
-
+    private FragmentManager fragman;
     // Constructor
     public EntradaAdapter(ArrayList<Entrada> datos, Context context) {
         this.datos = datos;
         this.context = context;
+
     }
 
 
@@ -56,15 +60,14 @@ public class EntradaAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
 
-             //   Fragment fragment = new BlogFragment(); esto me lleva al mismo fragment donde estoy
-//
-//                Fragment fragment = new EntryBlogFragment();
-//
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                transaction.replace(R.id.frame_fragment, fragment);
-//                transaction.commit();
-                  Toast.makeText(context, "CLICK", Toast.LENGTH_SHORT).show();
+                // HACER CON INTENTS
+
+                Intent intent = new Intent(context, EntryBlogActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("objeto", entrada);
+                intent.putExtra("extra", bundle);
+                context.startActivity(intent);
+                Toast.makeText(context, "CLICK", Toast.LENGTH_SHORT).show();
 
             }
         });
