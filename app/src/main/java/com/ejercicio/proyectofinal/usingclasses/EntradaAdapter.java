@@ -37,7 +37,6 @@ public class EntradaAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -61,7 +60,6 @@ public class EntradaAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolde
             public void onClick(View v) {
 
                 // HACER CON INTENTS
-
                 Intent intent = new Intent(context, EntryBlogActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("objeto", entrada);
