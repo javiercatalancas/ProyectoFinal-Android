@@ -17,6 +17,9 @@ import com.ejercicio.proyectofinal.R;
 public class ContactFragment extends Fragment {
     CardView cardmapa;
     CardView cardemail1;
+    CardView cardemail2;
+    CardView cardtel;
+    CardView cardwhats;
     
 
 
@@ -26,6 +29,9 @@ public class ContactFragment extends Fragment {
         View v = inflater.inflate(R.layout.contact_layout, container, false);
          cardmapa = v.findViewById(R.id.cardmap);
          cardemail1 = v.findViewById(R.id.cardmail);
+         cardemail2 = v.findViewById(R.id.cardmail2);
+         cardtel = v.findViewById(R.id.cardcall);
+         cardwhats = v.findViewById(R.id.cardwhatsapp);
         return v;
     }
 
@@ -74,7 +80,33 @@ public class ContactFragment extends Fragment {
             }
         });
 
+        cardemail2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent correosend= new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","contact@bestguitarlessons.es",null));
+                startActivity(correosend);
+            }
+        });
+        cardtel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:953602560"));
+                startActivity(intent);
+            }
+        });
+        cardwhats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String texto = "Hola, probando";
+                String tel = "+34622858184";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                String uri = "whatsapp://send?phone=" + tel + "&text=" + texto;
+                intent.setData(Uri.parse(uri));
+                startActivity(intent);
 
+
+            }
+        });
 
     }
 

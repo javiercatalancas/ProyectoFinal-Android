@@ -29,7 +29,7 @@ public class EntradaAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private final ArrayList<Entrada> datos;
     private final Context context;
-    private FragmentManager fragman;
+
     // Constructor
     public EntradaAdapter(ArrayList<Entrada> datos, Context context) {
         this.datos = datos;
