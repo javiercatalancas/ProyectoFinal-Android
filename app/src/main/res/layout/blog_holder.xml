@@ -10,7 +10,6 @@
         android:id="@+id/imageholder"
         android:layout_width="211dp"
         android:layout_height="207dp"
-        android:layout_marginStart="3dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/contenido"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,7 +21,6 @@
         android:id="@+id/contenido"
         android:layout_width="210dp"
         android:layout_height="93dp"
-        android:layout_marginStart="4dp"
 
         android:background="#4D888888"
         app:layout_constraintBottom_toBottomOf="@+id/imageholder"
