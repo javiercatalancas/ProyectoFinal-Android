@@ -199,25 +199,26 @@
                 android:padding="15px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/amaranth_bold"
                     android:hint="Nombre"
-                    android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="15px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/amaranth_bold"
                     android:hint="Email"
-                    android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -227,11 +228,11 @@
                 android:padding="15px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textphone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/amaranth_bold"
                     android:hint="Teléfono"
-                    android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -241,16 +242,24 @@
                 android:padding="15px">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textsubject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/amaranth_bold"
                     android:hint="Mensaje"
-                    android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amaranth_bold"
+                android:text="He leído y acepto los términos y condiciones de uso"
+                android:textColor="#FFFFFF" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonsend"
                 android:layout_width="218dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

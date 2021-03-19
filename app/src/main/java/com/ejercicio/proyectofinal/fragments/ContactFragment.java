@@ -1,18 +1,26 @@
 package com.ejercicio.proyectofinal.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.ejercicio.proyectofinal.LoginActivity;
+import com.ejercicio.proyectofinal.MainActivity;
 import com.ejercicio.proyectofinal.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ContactFragment extends Fragment {
     CardView cardmapa;
@@ -20,8 +28,16 @@ public class ContactFragment extends Fragment {
     CardView cardemail2;
     CardView cardtel;
     CardView cardwhats;
-    
-
+    Button buttonform;
+    CheckBox checkaccept;
+    TextInputEditText nombre;
+    TextInputEditText correo;
+    TextInputEditText telefono;
+    TextInputEditText subject;
+    String nombresend;
+    String correosend;
+    String telefonosend;
+    String subjectsend;
 
     @Nullable
     @Override
@@ -32,6 +48,13 @@ public class ContactFragment extends Fragment {
          cardemail2 = v.findViewById(R.id.cardmail2);
          cardtel = v.findViewById(R.id.cardcall);
          cardwhats = v.findViewById(R.id.cardwhatsapp);
+         buttonform = v.findViewById(R.id.buttonsend);
+         checkaccept = v.findViewById(R.id.checkBox);
+         nombre = v.findViewById(R.id.textname);
+         correo = v.findViewById(R.id.textemail);
+         telefono = v.findViewById(R.id.textphone);
+         subject = v.findViewById(R.id.textsubject);
+
         return v;
     }
 
@@ -108,6 +131,70 @@ public class ContactFragment extends Fragment {
             }
         });
 
+        buttonform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               nombresend = nombre.getText().toString();
+               correosend = correo.getText().toString();
+               telefonosend = telefono.getText().toString();
+               subjectsend = subject.getText().toString();
+
+
+                if(checkaccept.isChecked()){
+                   if (!nombresend.isEmpty()){
+                       if(!correosend.isEmpty()){
+                           if(!telefonosend.isEmpty()){
+                               if(!subjectsend.isEmpty()){
+                                   dialogNormal();
+                               } else subject.setError("Introduce un mensaje");
+                           } else telefono.setError("Introduce un teléfono");
+                       } else correo.setError("Introduce un correo");
+                   } else nombre.setError("Introduce un nombre");
+                }else Toast.makeText(getContext(), "Acepta las condiciones", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+    }
+
+    public void dialogNormal() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setTitle("¿Estás seguro de que quieres mandar el correo?");
+
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                String [] correoenviar = { "info@bestguitarlessons.es", "contact@bestguitarlessons.es"};
+
+                Intent correosend= new Intent();
+                correosend.setAction(Intent.ACTION_SEND);
+                correosend.putExtra(Intent.EXTRA_EMAIL, correoenviar);
+                correosend.putExtra(Intent.EXTRA_SUBJECT, "Mensaje de contacto");
+                correosend.setType("*/*");
+                correosend.putExtra(Intent.EXTRA_TEXT, "DATOS DE CONTACTO " + " \r\n \r\n " +"Nombre :" + nombresend + " \r\n \r\n " + "Email: " + correo.getText().toString() + " \r\n \r\n " + "Telefono :" + telefonosend + " \r\n \r\n " + "Mensaje :" + subjectsend);
+                startActivity(correosend);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+                // BORRAR DATOS DEL FORMULARIO EN CASO DE NO MANDAR EMAIL
+                nombre.setText("");
+                correo.setText("");
+                telefono.setText("");
+                subject.setText("");
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

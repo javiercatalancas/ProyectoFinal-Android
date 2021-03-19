@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         navigationbottom.setSelectedItemId(R.id.nav_home);
-
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,12 +80,38 @@ public class MainActivity extends AppCompatActivity {
     // BOTÓN ATRÁS TOOLBAR
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            setResult(RESULT_CANCELED);
-            finish();
-            return true;
+
+        switch (item.getItemId())
+        {
+            case R.id.nav_exit:
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Mensaje del sistema");
+                builder.setMessage("¿Desea salir de la aplicación?");
+
+                builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                break;
         }
         return super.onOptionsItemSelected(item);
+
     }
     // SWITCH PARA NAVEGAR POR LOS FRAGMENTS
     private void navigateToFragment (int itemId){
@@ -119,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_fragment, fragment);
@@ -127,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // ON CREATE OPTIONS MENU para el icono de salir (apuntes actionbar)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.exit_menu, menu);
+        return true;
+    }
 
 }
